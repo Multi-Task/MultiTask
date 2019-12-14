@@ -2,7 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.0.1</Version>
+    <VersionPrefix>0.0.2</VersionPrefix>
+    <VersionSuffix Condition="'$(DOTNET_VERSION_SUFFIX)'!=''">$(DOTNET_VERSION_SUFFIX)</VersionSuffix>
+    <IncludeSymbols>true</IncludeSymbols>	
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>	
   </PropertyGroup>
 
 </Project>

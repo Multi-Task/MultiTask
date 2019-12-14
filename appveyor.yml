@@ -1,0 +1,19 @@
+version: 1.0.{build}
+pull_requests:
+  do_not_increment_build_number: true
+image: Visual Studio 2019
+configuration: Release
+init: 
+- cmd: git config --global core.autocrlf true 
+- ps: $env:DOTNET_VERSION_SUFFIX = "{0:d4}-{1}" -f [int32]$env:APPVEYOR_BUILD_NUMBER,$env:APPVEYOR_REPO_BRANCH
+nuget:
+  disable_publish_on_pr: true
+build_script:
+- cmd: dotnet build MultiTask.sln -c release
+test_script:
+- cmd: dotnet test MultiTask.sln -c release --no-build
+after_test:
+- cmd: dotnet pack MultiTask.sln -c release --no-build -o nupkgs
+artifacts:
+- path: '**/*.nupkg'
+- path: '**/*.snupkg'
