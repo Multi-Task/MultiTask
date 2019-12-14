@@ -8,13 +8,12 @@ init:
 - cmd: set DOTNET_VERSION_SUFFIX=%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_NUMBER%
 nuget:
   disable_publish_on_pr: true
-before_build:
-- cmd: dotnet restore MultiTask.sln -v m
-build:
-  project: MultiTask.sln
-  publish_nuget: true
-  publish_nuget_symbols: true
-  use_snupkg_format: true
-  verbosity: minimal
+build_script:
+- cmd: dotnet build MultiTask.sln -c release
+test_script:
+- cmd: dotnet test MultiTask.sln -c release --no-build
+after_test:
+- cmd: dotnet pack MultiTask.sln -c release --no-build -o nupkgs
 artifacts:
 - path: '**/*.nupkg'
+- path: '**/*.snupkg'
