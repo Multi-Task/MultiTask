@@ -1,0 +1,14 @@
+version: 1.0.{build}
+pull_requests:
+  do_not_increment_build_number: true
+configuration: Release
+nuget:
+  disable_publish_on_pr: true
+build:
+  project: MultiTask.sln
+  publish_nuget: true
+  publish_nuget_symbols: true
+  use_snupkg_format: true
+  verbosity: minimal
+artifacts:
+- path: '**/*.nupkg'
