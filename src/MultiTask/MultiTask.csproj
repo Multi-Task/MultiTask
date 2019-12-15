@@ -4,9 +4,29 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <VersionPrefix>0.0.2</VersionPrefix>
     <VersionSuffix Condition="'$(DOTNET_VERSION_SUFFIX)'!=''">$(DOTNET_VERSION_SUFFIX)</VersionSuffix>
-    <GenerateDocumentationFile/>
+    <GenerateDocumentationFile />
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="..\..\icon\multitask.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <!-- NuGet stuff -->
+  <PropertyGroup>
+    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+    <Authors>André N. Klingsheim</Authors>
+    <Copyright>Copyright 2019, André N. Klingsheim</Copyright>
+    <PackageProjectUrl>https://github.com/Multi-Task/MultiTask</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Multi-Task/MultiTask.git</RepositoryUrl>
+    <Description>Library to help til multitasking.</Description>
+    <PackageReleaseNotes>This release adds ninja functionality.</PackageReleaseNotes>
+    <PackageIcon>multitask.png</PackageIcon>
+    <PackageIconUrl />
+  </PropertyGroup>
 </Project>
