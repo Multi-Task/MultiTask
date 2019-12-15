@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MultiTask.Exceptions
+namespace MultiTasking.Tests.TestExceptions
 {
     public class TestException : Exception
     {

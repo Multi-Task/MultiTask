@@ -1,7 +1,7 @@
 ﻿using System.Runtime.ExceptionServices;
 using System.Threading.Tasks;
 
-namespace MultiTask
+namespace MultiTasking
 {
     public static class TaskExtensions
     {

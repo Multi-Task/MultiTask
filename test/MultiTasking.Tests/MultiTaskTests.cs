@@ -1,10 +1,10 @@
-﻿using MultiTask.Exceptions;
+﻿using MultiTasking.Tests.TestExceptions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MultiTask
+namespace MultiTasking.Tests
 {
     public class MultiTaskTests
     {

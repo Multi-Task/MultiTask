@@ -9,11 +9,11 @@ init:
 nuget:
   disable_publish_on_pr: true
 build_script:
-- cmd: dotnet build MultiTask.sln -c release
+- cmd: dotnet build MultiTasking.sln -c release
 test_script:
-- cmd: dotnet test MultiTask.sln -c release --no-build
+- cmd: dotnet test MultiTasking.sln -c release --no-build
 after_test:
-- cmd: dotnet pack MultiTask.sln -c release --no-build -o nupkgs
+- cmd: dotnet pack MultiTasking.sln -c release --no-build -o nupkgs
 artifacts:
 - path: '**/*.nupkg'
 - path: '**/*.snupkg'

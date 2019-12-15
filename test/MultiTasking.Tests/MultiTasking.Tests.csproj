@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MultiTask\MultiTask.csproj" />
+    <ProjectReference Include="..\..\src\MultiTasking\MultiTasking.csproj" />
   </ItemGroup>
 
 </Project>

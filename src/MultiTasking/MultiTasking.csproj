@@ -12,13 +12,12 @@
   <ItemGroup>
     <None Include="..\..\icon\multitask.png">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>icon</PackagePath>
     </None>
   </ItemGroup>
 
   <!-- NuGet stuff -->
   <PropertyGroup>
-    <PackageId>MultiTasking</PackageId>
     <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
     <Authors>André N. Klingsheim</Authors>
     <Copyright>Copyright 2019, André N. Klingsheim</Copyright>
@@ -27,7 +26,7 @@
     <RepositoryUrl>https://github.com/Multi-Task/MultiTask.git</RepositoryUrl>
     <Description>Library to help til multitasking.</Description>
     <PackageReleaseNotes>This release adds ninja functionality.</PackageReleaseNotes>
-    <PackageIcon>multitask.png</PackageIcon>
+    <PackageIcon>icon/multitask.png</PackageIcon>
     <PackageIconUrl />
   </PropertyGroup>
 </Project>
