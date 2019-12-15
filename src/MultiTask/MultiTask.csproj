@@ -4,8 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <VersionPrefix>0.0.2</VersionPrefix>
     <VersionSuffix Condition="'$(DOTNET_VERSION_SUFFIX)'!=''">$(DOTNET_VERSION_SUFFIX)</VersionSuffix>
-    <IncludeSymbols>true</IncludeSymbols>	
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>	
+    <GenerateDocumentationFile/>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
 </Project>
