@@ -5,7 +5,7 @@ image: Visual Studio 2019
 configuration: Release
 init: 
 - cmd: git config --global core.autocrlf true 
-- ps: $env:DOTNET_VERSION_SUFFIX = "{0:d4}{1}" -f [int32]$env:APPVEYOR_BUILD_NUMBER,$env:APPVEYOR_REPO_BRANCH
+- cmd: set DOTNET_VERSION_SUFFIX=%APPVEYOR_BUILD_NUMBER%.%APPVEYOR_REPO_BRANCH%
 nuget:
   disable_publish_on_pr: true
 build_script:
