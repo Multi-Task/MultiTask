@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MultiTasking
+namespace MultiTasks
 {
     public static class MultiTask
     {

@@ -4,7 +4,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <VersionPrefix>0.0.2</VersionPrefix>
     <VersionSuffix Condition="'$(DOTNET_VERSION_SUFFIX)'!=''">$(DOTNET_VERSION_SUFFIX)</VersionSuffix>
-    <GenerateDocumentationFile />
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
@@ -28,6 +27,9 @@
     <PackageReleaseNotes>This release adds ninja functionality.</PackageReleaseNotes>
     <PackageIcon>icon/multitask.png</PackageIcon>
     <PackageIconUrl />
-    <PackageId>MultiTasks</PackageId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 </Project>
