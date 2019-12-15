@@ -28,5 +28,6 @@
     <PackageReleaseNotes>This release adds ninja functionality.</PackageReleaseNotes>
     <PackageIcon>icon/multitask.png</PackageIcon>
     <PackageIconUrl />
+    <PackageId>MultiTasks</PackageId>
   </PropertyGroup>
 </Project>
