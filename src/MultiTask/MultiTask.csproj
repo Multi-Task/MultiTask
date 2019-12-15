@@ -18,6 +18,7 @@
 
   <!-- NuGet stuff -->
   <PropertyGroup>
+    <PackageId>MultiTasking</PackageId>
     <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
     <Authors>André N. Klingsheim</Authors>
     <Copyright>Copyright 2019, André N. Klingsheim</Copyright>
