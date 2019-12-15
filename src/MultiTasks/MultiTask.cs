@@ -3,17 +3,35 @@ using System.Threading.Tasks;
 
 namespace MultiTasks
 {
+    /// <summary>
+    /// Provides support for awaiting multiple tasks and more conventient handling of return values and exceptions.
+    /// </summary>
     public static class MultiTask
     {
         /// <summary>
-        /// Creates a task that will complete when all of the Task<TResult> and Task objects have completed.
+        /// Creates a task that will complete when all of the Task objects have completed.
+        /// </summary>
+        /// <param name="tasks">An optional number of <see cref="Task"/> objects that must complete before returning a value.</param>
+        /// <exception cref="System.AggregateException">Thrown when the task is awaited and an unhandled exception has occured in one of more of the supplied tasks.</exception>
+        /// <returns>A task that represents the completion of all of the supplied tasks.</returns>
+        /// <remarks>
+        /// This method differs from <see cref="Task.WhenAll(Task[])"/> when an unhandled exception occurs. It will then always throw an <see cref="System.AggregateException"/> when awaited.
+        /// This makes exception handling easier when handling <see cref="Task"/>s in parallel.
+        /// </remarks>
+        public static async Task WhenAll(params Task[] tasks)
+        {
+            await Task.WhenAll(tasks).AggregateExceptions().ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Creates a task that will complete when all of the <see cref="Task{TResult}"/> and <see cref="Task"/> objects have completed.
         /// </summary>
         /// <typeparam name="T">Return type of the first <see cref="Task{TResult}"/>.</typeparam>
         /// <param name="t">A <see cref="Task"/> that can return av value.</param>
         /// <param name="otherTasks">An optional number of <see cref="Task"/> objects that must complete before returning a value.</param>
         /// <exception cref="System.AggregateException">Thrown when the task is awaited and an unhandled exception has occured in one of more of the supplied tasks.</exception>
         /// <returns>A task that represents the completion of all of the supplied tasks.</returns>
-        /// <remarks>This method differs from <see cref="Task.WhenAll{TResult}(Task{TResult}[])"/>. The returned Task will always thrown an <exception cref="System.AggregateException"> when awaited.
+        /// <remarks>This method differs from <see cref="Task.WhenAll(Task[])"/> when an unhandled exception occurs. It will then always throw an <see cref="System.AggregateException"/> when awaited.
         /// This makes exception handling easier when handling <see cref="Task"/>s in parallel.</remarks>
         public static async Task<T> WhenAll<T>(Task<T> t, params Task[] otherTasks)
         {
@@ -26,7 +44,7 @@ namespace MultiTasks
         }
 
         /// <summary>
-        /// Creates a task that will complete when all of the Task<TResult> and Task objects have completed.
+        /// Creates a task that will complete when all of the <see cref="Task{TResult}"/> and <see cref="Task"/> objects have completed.
         /// </summary>
         /// <typeparam name="T">Return type of the first <see cref="Task{TResult}"/>.</typeparam>
         /// <typeparam name="T2">Return type of the second <see cref="Task{TResult}"/>.</typeparam>
@@ -35,7 +53,7 @@ namespace MultiTasks
         /// <param name="otherTasks">An optional number of <see cref="Task"/> objects that must complete before returning a value.</param>
         /// <exception cref="System.AggregateException">Thrown when the task is awaited and an unhandled exception has occured in one of more of the supplied tasks.</exception>
         /// <returns>A task that represents the completion of all of the supplied tasks.</returns>
-        /// <remarks>This method differs from <see cref="Task.WhenAll{TResult}(Task{TResult}[])"/>. The returned Task will always thrown an <exception cref="System.AggregateException"> when awaited.
+        /// <remarks>This method differs from <see cref="Task.WhenAll(Task[])"/> when an unhandled exception occurs. It will then always throw an <see cref="System.AggregateException"/> when awaited.
         /// This makes exception handling easier when handling <see cref="Task"/>s in parallel.</remarks>
         public static async Task<(T, T2)> WhenAll<T, T2>(Task<T> t1, Task<T2> t2, params Task[] otherTasks)
         {
@@ -48,7 +66,7 @@ namespace MultiTasks
         }
 
         /// <summary>
-        ///  Creates a task that will complete when all of the Task<TResult> and Task objects have completed.
+        ///  Creates a task that will complete when all of the <see cref="Task{TResult}"/> and <see cref="Task"/> objects have completed.
         /// </summary>
         /// <typeparam name="T">Return type of the first <see cref="Task{TResult}"/>.</typeparam>
         /// <typeparam name="T2">Return type of the second <see cref="Task{TResult}"/>.</typeparam>
@@ -59,7 +77,7 @@ namespace MultiTasks
         /// <param name="otherTasks">An optional number of <see cref="Task"/> objects that must complete before returning a value.</param>
         /// <exception cref="System.AggregateException">Thrown when the task is awaited and an unhandled exception has occured in one of more of the supplied tasks.</exception>
         /// <returns>A task that represents the completion of all of the supplied tasks.</returns>
-        /// <remarks>This method differs from <see cref="Task.WhenAll{TResult}(Task{TResult}[])"/>. The returned Task will always thrown an <exception cref="System.AggregateException"> when awaited.
+        /// <remarks>This method differs from <see cref="Task.WhenAll(Task[])"/> when an unhandled exception occurs. It will then always throw an <see cref="System.AggregateException"/> when awaited.
         /// This makes exception handling easier when handling <see cref="Task"/>s in parallel.</remarks>
         public static async Task<(T, T2, T3)> WhenAll<T, T2, T3>(Task<T> t1, Task<T2> t2, Task<T3> t3, params Task[] otherTasks)
         {
@@ -72,7 +90,7 @@ namespace MultiTasks
         }
 
         /// <summary>
-        ///  Creates a task that will complete when all of the Task<TResult> and Task objects have completed.
+        ///  Creates a task that will complete when all of the <see cref="Task{TResult}"/> and <see cref="Task"/> objects have completed.
         /// </summary>
         /// <typeparam name="T">Return type of the first <see cref="Task{TResult}"/>.</typeparam>
         /// <typeparam name="T2">Return type of the second <see cref="Task{TResult}"/>.</typeparam>
@@ -85,7 +103,7 @@ namespace MultiTasks
         /// <param name="otherTasks">An optional number of <see cref="Task"/> objects that must complete before returning a value.</param>
         /// <exception cref="System.AggregateException">Thrown when the task is awaited and an unhandled exception has occured in one of more of the supplied tasks.</exception>
         /// <returns>A task that represents the completion of all of the supplied tasks.</returns>
-        /// <remarks>This method differs from <see cref="Task.WhenAll{TResult}(Task{TResult}[])"/>. The returned Task will always thrown an <exception cref="System.AggregateException"> when awaited.
+        /// <remarks>This method differs from <see cref="Task.WhenAll(Task[])"/> when an unhandled exception occurs. It will then always throw an <see cref="System.AggregateException"/> when awaited.
         /// This makes exception handling easier when handling <see cref="Task"/>s in parallel.</remarks>
         public static async Task<(T, T2, T3, T4)> WhenAll<T, T2, T3, T4>(Task<T> t1, Task<T2> t2, Task<T3> t3, Task<T4> t4, params Task[] otherTasks)
         {
@@ -98,7 +116,7 @@ namespace MultiTasks
         }
 
         /// <summary>
-        ///  Creates a task that will complete when all of the Task<TResult> and Task objects have completed.
+        ///  Creates a task that will complete when all of the <see cref="Task{TResult}"/> and <see cref="Task"/> objects have completed.
         /// </summary>
         /// <typeparam name="T">Return type of the first <see cref="Task{TResult}"/>.</typeparam>
         /// <typeparam name="T2">Return type of the second <see cref="Task{TResult}"/>.</typeparam>
@@ -113,7 +131,7 @@ namespace MultiTasks
         /// <param name="otherTasks">An optional number of <see cref="Task"/> objects that must complete before returning a value.</param>
         /// <exception cref="System.AggregateException">Thrown when the task is awaited and an unhandled exception has occured in one of more of the supplied tasks.</exception>
         /// <returns>A task that represents the completion of all of the supplied tasks.</returns>
-        /// <remarks>This method differs from <see cref="Task.WhenAll{TResult}(Task{TResult}[])"/>. The returned Task will always thrown an <exception cref="System.AggregateException"> when awaited.
+        /// <remarks>This method differs from <see cref="Task.WhenAll(Task[])"/> when an unhandled exception occurs. It will then always throw an <see cref="System.AggregateException"/> when awaited.
         /// This makes exception handling easier when handling <see cref="Task"/>s in parallel.</remarks>
         public static async Task<(T, T2, T3, T4, T5)> WhenAll<T, T2, T3, T4, T5>(Task<T> t1, Task<T2> t2, Task<T3> t3, Task<T4> t4, Task<T5> t5,
             params Task[] otherTasks)
@@ -127,7 +145,7 @@ namespace MultiTasks
         }
 
         /// <summary>
-        ///  Creates a task that will complete when all of the Task<TResult> and Task objects have completed.
+        ///  Creates a task that will complete when all of the <see cref="Task{TResult}"/> and <see cref="Task"/> objects have completed.
         /// </summary>
         /// <typeparam name="T">Return type of the first <see cref="Task{TResult}"/>.</typeparam>
         /// <typeparam name="T2">Return type of the second <see cref="Task{TResult}"/>.</typeparam>
@@ -144,7 +162,7 @@ namespace MultiTasks
         /// <param name="otherTasks">An optional number of <see cref="Task"/> objects that must complete before returning a value.</param>
         /// <exception cref="System.AggregateException">Thrown when the task is awaited and an unhandled exception has occured in one of more of the supplied tasks.</exception>
         /// <returns>A task that represents the completion of all of the supplied tasks.</returns>
-        /// <remarks>This method differs from <see cref="Task.WhenAll{TResult}(Task{TResult}[])"/>. The returned Task will always thrown an <exception cref="System.AggregateException"> when awaited.
+        /// <remarks>This method differs from <see cref="Task.WhenAll(Task[])"/> when an unhandled exception occurs. It will then always throw an <see cref="System.AggregateException"/> when awaited.
         /// This makes exception handling easier when handling <see cref="Task"/>s in parallel.</remarks>
         public static async Task<(T, T2, T3, T4, T5, T6)> WhenAll<T, T2, T3, T4, T5, T6>(Task<T> t1, Task<T2> t2, Task<T3> t3, Task<T4> t4, Task<T5> t5,
             Task<T6> t6, params Task[] otherTasks)
@@ -158,7 +176,7 @@ namespace MultiTasks
         }
 
         /// <summary>
-        ///  Creates a task that will complete when all of the Task<TResult> and Task objects have completed.
+        ///  Creates a task that will complete when all of the <see cref="Task{TResult}"/> and <see cref="Task"/> objects have completed.
         /// </summary>
         /// <typeparam name="T">Return type of the first <see cref="Task{TResult}"/>.</typeparam>
         /// <typeparam name="T2">Return type of the second <see cref="Task{TResult}"/>.</typeparam>
@@ -177,7 +195,7 @@ namespace MultiTasks
         /// <param name="otherTasks">An optional number of <see cref="Task"/> objects that must complete before returning a value.</param>
         /// <exception cref="System.AggregateException">Thrown when the task is awaited and an unhandled exception has occured in one of more of the supplied tasks.</exception>
         /// <returns>A task that represents the completion of all of the supplied tasks.</returns>
-        /// <remarks>This method differs from <see cref="Task.WhenAll{TResult}(Task{TResult}[])"/>. The returned Task will always thrown an <exception cref="System.AggregateException"> when awaited.
+        /// <remarks>This method differs from <see cref="Task.WhenAll(Task[])"/> when an unhandled exception occurs. It will then always throw an <see cref="System.AggregateException"/> when awaited.
         /// This makes exception handling easier when handling <see cref="Task"/>s in parallel.</remarks>
         public static async Task<(T, T2, T3, T4, T5, T6, T7)> WhenAll<T, T2, T3, T4, T5, T6, T7>(Task<T> t1, Task<T2> t2, Task<T3> t3, Task<T4> t4, Task<T5> t5,
             Task<T6> t6, Task<T7> t7, params Task[] otherTasks)

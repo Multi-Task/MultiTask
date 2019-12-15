@@ -45,6 +45,12 @@ namespace MultiTasks.Tests
         }
 
         [Fact]
+        public async Task WhenAll_OneTask_NoException()
+        {
+            await MultiTask.WhenAll(_tp);
+        }
+
+        [Fact]
         public async Task WhenAll_OneValueTask_ReturnsResult()
         {
             var result = await MultiTask.WhenAll(_t1, _tp);
@@ -139,21 +145,23 @@ namespace MultiTasks.Tests
             var pet = Task.FromException(expectedException); //Plain exception task
 
 
-            var t1 = MultiTask.WhenAll(vet, pet);
-            var t2 = MultiTask.WhenAll(vet, vet, pet);
-            var t3 = MultiTask.WhenAll(vet, vet, vet, pet);
-            var t4 = MultiTask.WhenAll(vet, vet, vet, vet, pet);
-            var t5 = MultiTask.WhenAll(vet, vet, vet, vet, vet, pet);
-            var t6 = MultiTask.WhenAll(vet, vet, vet, vet, vet, vet, pet);
-            var t7 = MultiTask.WhenAll(vet, vet, vet, vet, vet, vet, vet, pet);
+            var t1 = MultiTask.WhenAll(pet);
+            var t2 = MultiTask.WhenAll(vet, pet);
+            var t3 = MultiTask.WhenAll(vet, vet, pet);
+            var t4 = MultiTask.WhenAll(vet, vet, vet, pet);
+            var t5 = MultiTask.WhenAll(vet, vet, vet, vet, pet);
+            var t6 = MultiTask.WhenAll(vet, vet, vet, vet, vet, pet);
+            var t7 = MultiTask.WhenAll(vet, vet, vet, vet, vet, vet, pet);
+            var t8 = MultiTask.WhenAll(vet, vet, vet, vet, vet, vet, vet, pet);
 
-            yield return new object[] { 2, t1, expectedException };
-            yield return new object[] { 3, t2, expectedException };
-            yield return new object[] { 4, t3, expectedException };
-            yield return new object[] { 5, t4, expectedException };
-            yield return new object[] { 6, t5, expectedException };
-            yield return new object[] { 7, t6, expectedException };
-            yield return new object[] { 8, t7, expectedException };
+            yield return new object[] { 1, t1, expectedException };
+            yield return new object[] { 2, t2, expectedException };
+            yield return new object[] { 3, t3, expectedException };
+            yield return new object[] { 4, t4, expectedException };
+            yield return new object[] { 5, t5, expectedException };
+            yield return new object[] { 6, t6, expectedException };
+            yield return new object[] { 7, t7, expectedException };
+            yield return new object[] { 8, t8, expectedException };
         }
     }
 }
